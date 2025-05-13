@@ -1,0 +1,35 @@
+.product-des {
+  display: flex;
+  flex-direction: row;
+  width: 80vw;
+  gap: 36px;
+  justify-content: space-between;
+  /* box-sizing: border-box; */
+}
+
+.product-des-1 {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  width: 60%;
+}
+
+.product-des-2 {
+  width: 40%;
+}
+
+@media (max-width: 500px) {
+  .product-des {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 100lvw;
+    gap: 36px;
+  }
+
+  .product-des-1 {
+    width: 90%;
+  }
+  .product-des-2 {
+    width: 90%;
+  }
+}

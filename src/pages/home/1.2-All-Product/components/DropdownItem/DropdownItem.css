@@ -1,0 +1,14 @@
+.dropdown-item {
+  padding: 10px 10px;
+  margin: 0rem 1rem;
+  width: 110%;
+  /* border-radius: 0.5rem; */
+  cursor: pointer;
+  color: gray;
+}
+
+.dropdown-item:hover {
+  background-color: #F4F5FA;
+  font-weight: bold;
+  /* width: 100%; */
+}

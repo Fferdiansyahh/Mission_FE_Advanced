@@ -1,0 +1,159 @@
+@import "tailwindcss";
+@plugin "flowbite-react/plugin/tailwindcss";
+@source "../../../../../.flowbite-react/class-list.json";
+
+h6 {
+  font-family: "Poppins";
+}
+
+.list-kelas-b-1 h1 {
+  font-family: "Poppins";
+  font-size: 20px;
+  font-weight: 600px;
+}
+.list-kelas-b-1 h2 {
+  font-family: "Poppins";
+  font-size: 15px;
+  font-weight: 800px;
+  margin: 0px;
+}
+
+.list-kelas-b-1 p {
+  font-family: "DM Sans";
+  font-weight: 400px;
+  color: #333333ad;
+  margin: 0px;
+  align-content: center;
+}
+
+.list-kelas-b-1 h4 {
+  font-family: "DM Sans";
+  font-size: 18px;
+  font-weight: 900px;
+  color: #222325;
+  align-content: center;
+  margin: 0px;
+}
+
+.list-kelas-b-1 img {
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+}
+
+.list-kelas-b-1 {
+  width: 330px;
+  border: #3a35411f 1px solid;
+  background-color: white;
+  padding: 24px;
+  gap: 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+.list-kelas-b-1-1 {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.list-kelas-b-1-1-1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* border: #3a35411f 1px solid; */
+}
+
+.hr-item {
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-between;
+  border: #3a35411f 1px solid;
+  padding: 16px;
+  border-radius: 10px;
+}
+
+.hr-i {
+  display: flex;
+  gap: 6px;
+}
+
+.list-kelas-b-1-1-1 h2 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+}
+
+.hr-i h4 {
+  font-family: "Poppins", sans-serif;
+}
+
+.list-kelas-b-1-1-1 div {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+.icon-up {
+  margin-top: 5px;
+  color: #333333ad;
+}
+
+.list-kelas-b-1 img {
+  color: #333333ad;
+  margin-top: 3px;
+}
+
+.des-1-1-1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.kk {
+  display: flex;
+  justify-content: left;
+}
+.kk img {
+  width: 70px;
+}
+
+.arrow-icon {
+  font-size: 1.2em;
+  transition: transform 0.2s ease-in-out;
+  color: #333333ad;
+}
+.arrow-icon.open {
+  transform: rotate(180deg);
+}
+.arrow-icon1 {
+  font-size: 1.2em;
+  transition: transform 0.2s ease-in-out;
+}
+.arrow-icon1.open {
+  transform: rotate(180deg);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.d-b {
+  text-decoration: none;
+}
+
+@media (max-width: 500px) {
+  .list-kelas-b-1 {
+    width: 100%;
+  }
+
+  /* .list-kelas-b-1-1-1 div {
+    display: none;
+  }
+
+  .list-kelas-b-1 h4 {
+    font-size: 15px;
+    font-weight: bold;
+  } */
+}

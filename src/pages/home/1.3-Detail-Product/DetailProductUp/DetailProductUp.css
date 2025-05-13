@@ -1,0 +1,108 @@
+.detail-up-1 {
+  display: flex;
+  align-items: center;
+justify-content: start;
+  gap: 7px;
+}
+
+.detail-up-1 p {
+  margin: 0px;
+  color: #333333ad;
+  width: max-content;
+}
+
+.detail-up-1 h6 {
+  margin: 0px;
+  color: #3f4042;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.detail-1 {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8) 0 100%),
+    url("/src/assets/bg-1.jpeg");
+
+  background-size: 100%;
+  background-position: center;
+  background-color: black;
+  height: max-content;
+  padding: 90px 90px 64px;
+  border-radius: 10px;
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.d-1-1 {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.d-1-1-1 {
+  color: white;
+  font-size: 37px;
+  font-family: "Poppins";
+  font-weight: 500;
+  width: 80%;
+  margin: 0px;
+}
+
+.d-1-1-2 {
+  color: white;
+  font-size: 16px;
+  margin: 0px;
+  width: 80%;
+  max-width: 350px;
+  font-family: "DM Sans";
+}
+
+.d-1-2 {
+  border-radius: 10px;
+}
+
+.card-u-1-1-2-1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-items: center;
+  gap: 3px;
+}
+.card-u-1-1-2-1 p,
+h3 {
+  color: #dbdbdc !important;
+  margin: 0px !important;
+}
+
+.card-u-1-1-2-1 h2 {
+  color: rgb(221, 247, 78);
+  margin: 0px;
+}
+
+.card-u-1-1-2-1 p {
+  margin-top: 8px;
+}
+
+@media (max-width: 500px) {
+  .detail-1 {
+    padding: 40px 20px 40px 20px;
+  }
+
+  .d-1-1 h1 {
+    font-size: 24px;
+  }
+
+  .card-u-1-1-2-1 p {
+    color: #c1c2c4 !important;
+  }
+
+  .detail-up-1 h6 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 50vw;
+  }
+}

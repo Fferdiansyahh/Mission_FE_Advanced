@@ -1,0 +1,108 @@
+.card-d-t-p {
+  display: block;
+}
+.card-p-d {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  padding-bottom: 7px;
+}
+
+.card-p-d p {
+  padding-top: 7px;
+}
+
+.card-p-d h5 {
+  margin-top: 7px;
+  font-size: 15px;
+  color: #333333ad;
+}
+
+.card-d-1-1-2-1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-items: center;
+  gap: 3px;
+  height: max-content;
+}
+
+.card-img-u {
+  margin-top: 5px;
+  height: 40px;
+  width: 40px;
+  border-radius: 10px;
+}
+.card-d-1-1-1 {
+  display: flex;
+  gap: 10px;
+  margin: 15px 0px;
+  /* flex-direction: column; */
+}
+
+.card-d-1-1-1 p,
+h5 {
+  margin: 0px;
+}
+
+.card-d-1-1-1 h3 {
+  color: black;
+  margin: 0px;
+  text-align: left;
+  font-size: 20px;
+}
+
+.dcard-1 {
+  width: 362px;
+  border: 1px solid #3a35411f;
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  
+  flex-direction: column;
+}
+.dcard-1 h2 {
+  font-size: 18px;
+  text-align: left;
+  font-family: "poppins";
+}
+.dcard-1 p {
+  color: #333333ad;
+  margin: 0px;
+  font-size: 16px;
+  text-align: left;
+  font-family: "DM Sans";
+}
+/* overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical; */
+.card-d-1-1-2-1 h5 {
+  margin: 0px;
+  font-size: 1px;
+}
+.card-d-1-1-2-1 p {
+  margin: 0px;
+  font-size: 10px;
+}
+
+@media (max-width: 500px) {
+  .dcard-1 {
+    width: 100%;
+    box-sizing: border-box;
+    /* margin: 0px 20px; */
+  }
+  .card-d-t-p {
+    display: block!important;
+  }
+  .card-p-d {
+    display: none;
+  }
+  .card-img-u {
+    height: 36px;
+    width: 36px;
+  }
+}

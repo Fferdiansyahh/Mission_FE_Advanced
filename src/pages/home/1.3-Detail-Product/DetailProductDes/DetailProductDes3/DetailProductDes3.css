@@ -1,0 +1,103 @@
+.detail-des-1 h1 {
+  font-family: "Poppins";
+  font-size: 20px;
+  font-weight: 600px;
+}
+.detail-des-1 h2 {
+  font-family: "Poppins";
+  font-size: 20px;
+  font-weight: 600px;
+  color: #3ecf4c;
+  margin: 0px;
+}
+
+.detail-des-1 p {
+  font-family: "DM Sans";
+  font-size: 17px;
+  line-height: 22PX;
+  font-weight: 400px;
+  color: #333333ad;
+  margin: 0px;
+  align-content: center;
+}
+
+.detail-des-1 h4 {
+  font-family: "DM Sans";
+  font-size: 18px;
+  font-weight: 900px;
+  color: #222325;
+  align-content: center;
+  margin: 0px;
+}
+
+.detail-des-1 img {
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+}
+
+.detail-des-1 {
+  border: #3a35411f 1px solid;
+  background-color: white;
+  padding: 24px;
+  border-radius: 10px;
+  gap: 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-des-1-1 {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.detail-des-1-1-1 {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  justify-content: space-between;
+  border: #3a35411f 1px solid;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.detail-des-1-1-1 div {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+.icon-up {
+  margin-top: 5px;
+  color: #333333ad;
+}
+
+.detail-des-1 img {
+  color: #333333ad;
+}
+
+.des-1-1-1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@media (max-width: 500px) {
+  .detail-des-1 h2 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .detail-des-1-1-1 div {
+    display: none;
+  }
+
+  .detail-des-1 h4 {
+    
+    font-size: 15px;
+    font-weight: bold;
+   
+  }
+}

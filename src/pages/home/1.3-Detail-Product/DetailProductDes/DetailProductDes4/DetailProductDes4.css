@@ -1,0 +1,23 @@
+.detail-des-2 h1 {
+  font-family: "Poppins";
+  font-size: 20px;
+  font-weight: 600px;
+}
+
+.detail-des-2 {
+  border: #3a35411f 1px solid;
+  background-color: white;
+  padding: 24px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.card-des {
+  display: flex;
+  gap: 16px;
+}
+
+@media (max-width: 500px) {
+}

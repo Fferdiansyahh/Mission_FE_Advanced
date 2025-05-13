@@ -1,0 +1,258 @@
+.kat {
+  padding: 64px 120px;
+}
+
+.kategori {
+  padding: 40px 0px 40px;
+  justify-items: center;
+  display: flex;
+  gap: 40px;
+  
+}
+.kategori-1 {
+  border: 1px solid #3a35411f;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: white;
+  width: 580px;
+  height: max-content;
+}
+.k-1-1-1 {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.k-1-1-1 p {
+  color: red;
+}
+
+.k-1-1-1 h6,
+p {
+  margin: 0px;
+}
+
+.k-1-1-2 {
+  border: 1px solid #3a35411f;
+  border-radius: 10px;
+  background-color: white;
+  padding: 16px 16px;
+  gap: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.k-1-1-2 div {
+  display: flex;
+}
+
+#FaChevronUp {
+  color: red;
+}
+
+.k-1-1-2-1 {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  align-items: center;
+}
+
+.k-1-1-2-1 img {
+  width: 16px;
+  height: 16px;
+}
+
+.k-1-1-2-1 h6 {
+  margin: 0px;
+  color: #3ecf4c;
+}
+.kategori-1 a {
+  text-decoration: none !important;
+}
+
+.k-1-1-2-2-1 {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.k-1-1-2-2 {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.k-1-1-2-2 a {
+  border: 1px solid #3ecf4c;
+  border-radius: 2px;
+  height: 16px;
+  width: 16px;
+  background-color: #e2fcd9cc;
+}
+.k-1-1-2-2 p {
+  color: #333333ad;
+  font-style: "DM Sans";
+}
+
+.kategori-2 {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.kategori-2-1 {
+  display: flex;
+  justify-content: end;
+  gap: 16px;
+  height: 50px;
+}
+
+.input-wrapper-k {
+  background-color: white;
+  padding: 10px 15px;
+  border: 1px solid #3a35411f;
+  width: max-content;
+  display: flex;
+  border-radius: 10px;
+  align-items: center;
+}
+
+.input-wrapper-k input {
+  background-color: transparent;
+  border: none;
+  height: 100%;
+  width: 100%;
+  color: #333333ad;
+}
+.input-wrapper-k input:focus {
+  outline: none;
+}
+
+#search-icon {
+  color: #333333ad;
+}
+
+.kategori-2-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: space-between;
+  gap: 33px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.kategori-2-3 {
+  display: flex;
+  gap: 6px;
+  justify-content: end;
+}
+.kategori-2-3 a {
+  text-decoration: none;
+}
+.kategori-2-3-1 {
+  background-color: #f4f5fa;
+  height: 40px;
+  width: 40px;
+  padding: 12px;
+  display: flex;
+  border-radius: 4px;
+  justify-content: center;
+  align-items: center;
+}
+.kategori-2-3-2 {
+  background-color: #ffbd3a;
+  height: 40px;
+  width: 40px;
+  padding: 12px;
+  display: flex;
+  border-radius: 4px;
+  justify-content: center;
+  justify-items: center;
+}
+
+.kategori-2-3-2 p {
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.kategori-2-3-3 p {
+  color: #333333ad;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.kategori-2-3-3 {
+  background-color: transparent;
+  height: 40px;
+  width: 40px;
+  padding: 12px;
+  display: flex;
+  border-radius: 4px;
+  justify-content: center;
+  justify-items: center;
+}
+
+.kategori-2-3-4 {
+  background-color: #f4f5fa;
+  height: 40px;
+  width: 40px;
+  padding: 12px;
+  display: flex;
+  border-radius: 4px;
+  justify-content: center;
+  justify-items: center;
+}
+
+.icon-page {
+  color: #333333ad !important;
+}
+
+.arrow-icon {
+  font-size: 1.2em;
+  transition: transform 0.2s ease-in-out;
+  color: #3ecf4c;
+}
+.arrow-icon.open {
+  transform: rotate(180deg);
+}
+
+@media (max-width: 500px) {
+  .kat {
+    padding: 20px 20px;
+  }
+  .kategori {
+    flex-direction: column;
+    /* width: 100%; */
+  }
+
+  .k-1-1-2 div {
+    display: flex !important;
+  }
+  .kategori-1 {
+    width: 100%;
+  }
+
+  .k-1-1-2-2 {
+    display: none !important;
+    font-family: "dm8";
+  }
+
+  .k-1-1-2-1:focus + .k-1-1-2-2 {
+    display: block !important;
+  }
+  .kategori-2-2 {
+    grid-template-columns: repeat(1, 1fr);
+    justify-items: center;
+    width: 100%;
+  }
+  .kategori-2-3 {
+    justify-content: center;
+  }
+
+  .card-1{
+    width: 100%;
+  }
+}

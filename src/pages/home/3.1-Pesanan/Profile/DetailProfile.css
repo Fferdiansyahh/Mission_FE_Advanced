@@ -1,0 +1,210 @@
+@import "tailwindcss";
+@plugin "flowbite-react/plugin/tailwindcss";
+@source "../../../../../.flowbite-react/class-list.json";
+
+@theme {
+  --color-primary-50: #3ecf4c;
+  --color-primary-100: #3a35411f;
+}
+.pr-btn-2 {
+  background-color: #3ecf4c;
+  border: #3ecf4c solid 1px;
+  color: white;
+  font-weight: 700;
+  width: 150px;
+}
+
+.d-pr-1 {
+  width: 362px;
+  border: 1px solid #3a35411f;
+  background-color: white;
+
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.d-pr-1 h2 {
+  font-size: 18px;
+  text-align: left;
+  font-family: "poppins";
+}
+.d-pr-1 p {
+  color: #333333ad;
+  margin: 0px;
+  font-size: 16px;
+  text-align: left;
+  font-family: "DM Sans";
+  width: 80%;
+}
+
+.d-pr-1-1 {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  border: #3a35411f solid 1px;
+  background-color: white;
+}
+
+.d-pr-1-1 h2 {
+  margin: 0px;
+  font-weight: bold;
+}
+.d-pr-m {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+}
+
+.d-pr-m p {
+  color: black;
+}
+
+.d-pr-m h5 {
+  color: red;
+}
+
+.d-pr-m-1 {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+.d-pr-1-2-btn {
+  border-left: transparent solid 2px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  gap: 16px;
+}
+.d-pr-img {
+  height: 92px !important;
+  width: 92px !important;
+  border-radius: 10px;
+  object-fit: cover;
+  object-position: 100% 100%;
+}
+
+.div-hr {
+  border: #3a35411f solid 1px;
+  height: 1px;
+}
+/* Input */
+.entryarea {
+  position: relative;
+  height: 60px;
+  line-height: 40px;
+}
+.inputlabel {
+  position: absolute;
+  width: 70%;
+  outline: none;
+  font-size: 1.2em;
+  padding: 0 30px;
+  border-radius: 10px;
+  line-height: 40px;
+  border: 3px solid #1f7c7c;
+  background-color: transparent;
+  transition: 0.1s ease;
+  z-index: 1111;
+}
+
+.labeline {
+  position: relative;
+  font-size: 0.8em;
+  width: 60%;
+  color: #1f7c7c;
+  padding: 0 15px;
+  margin: 0 20px;
+  background-color: red;
+  transition: 0.2s ease;
+}
+
+.inputlabel:focus,
+.inputlabel:valid {
+  color: #3ecf4c;
+  border: #3ecf4c solid 3px;
+}
+.inputlabel:focus + .labeline,
+.inputlabel:valid + .labeline {
+  color: #3ecf4c;
+  height: 20px;
+  line-height: 30px;
+  padding: 0 17px;
+  transform: translate(-15px, -16px) scale(0.88);
+  z-index: 1111;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 20px;
+}
+.nohp {
+  width: 80px;
+  border-radius: 10px;
+  color: #333333ad;
+  margin: 0px;
+}
+
+.input-profil {
+  display: flex;
+  /* flex-direction: column; */
+  gap: 20px;
+  width: 100%;
+}
+
+.input-pass {
+  display: none;
+  gap: 20px;
+  width: 100%;
+}
+
+.icon-img {
+  width: 20px;
+  height: 20px;
+}
+@media (max-width: 500px) {
+  .pr-btn-2 {
+    width: 100%;
+    font-size: 18px;
+  }
+  .input-profil {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+  }
+
+  .input-pass {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .d-pr-1-1 {
+    flex-direction: column;
+    /* width: 100lvw; */
+    box-sizing: border-box;
+  }
+  .d-pr-1-1 h2 {
+    font-weight: bold;
+    font-size: 19px;
+    font-family: "poppins";
+  }
+  .d-pr-1-1 a {
+    align-content: center;
+  }
+  .d-pr-1-2-btn {
+    flex-direction: column;
+    gap: 3px;
+  }
+  .d-pr-img {
+    height: 60px;
+    width: 60px;
+    border-radius: 10px !important;
+  }
+}

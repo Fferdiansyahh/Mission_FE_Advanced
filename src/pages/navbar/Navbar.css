@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+.n-2-1 a,
+p {
+  text-decoration: none;
+  align-content: center;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-color: white;
+  padding: 12px 0px;
+  height: 60px;
+  display: flex;
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.n {
+  /* max-width: 1150px; */
+  display: flex;
+  align-items: center;
+  margin: 0px 120px;
+  justify-content: space-between;
+  width: 100%;
+}
+.n-1 img {
+  width: 190px;
+  height: 30px;
+  margin: 0px;
+}
+
+.n-2 {
+  display: flex;
+  /* flex-direction: row; */
+  gap: 30px;
+}
+
+.n-2 button {
+  display: none;
+}
+
+.n-2-1 {
+  display: flex;
+  gap: 20px;
+}
+
+nav li {
+  list-style: none;
+  text-decoration: none;
+  justify-items: center;
+  padding: 0px;
+  display: flex;
+  justify-content: center;
+}
+
+nav ul li {
+  margin: 0px 5px;
+  display: inline-block;
+}
+
+.n-2 p {
+  margin: 0px;
+  align-content: center;
+}
+
+.n-2 img {
+  height: 44px;
+  width: 44px;
+  border-radius: 10px;
+}
+
+.logo-image {
+  height: 50px;
+  margin-left: 120px;
+}
+
+.dropdown-icon {
+  color: #3ecf4c;
+  width: 20px;
+}
+
+.progress-text {
+  font-size: 14px;
+  color: #3ecf4c;
+  font-weight: 500;
+  font-family: "Poppins";
+}
+
+.progress-bar {
+  width: 100px;
+  height: 8px;
+  background-color: #fceebd;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  width: 83%; /* ~10/12 */
+  height: 100%;
+  background-color: #fbbc04;
+  border-radius: 10px;
+}
+
+@media (max-width: 500px) {
+  .n {
+    margin: 0px 28px;
+  }
+
+  .progress-bar {
+    display: none;
+  }
+  .n-2-1 {
+    display: none;
+  }
+}

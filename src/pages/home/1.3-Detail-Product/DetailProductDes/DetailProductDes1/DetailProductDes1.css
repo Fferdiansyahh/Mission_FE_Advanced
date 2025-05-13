@@ -1,0 +1,12 @@
+.detail-des-1 h1 {
+  font-family: "Poppins";
+  font-size: 20px;
+  font-weight: 600px;
+}
+
+.detail-des-1 {
+  border: #3a35411f 1px solid;
+  background-color: white;
+  padding: 24px;
+  border-radius: 10px;
+}
