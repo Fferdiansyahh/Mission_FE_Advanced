@@ -23,6 +23,7 @@ const useAuthProvider = () => {
   const [success, setSuccess] = useState("");
   const [user, setUser] = useState(null); // State untuk informasi pengguna (termasuk UID)
   const [isAuthReady, setIsAuthReady] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (authUser) => {
@@ -34,10 +35,9 @@ const useAuthProvider = () => {
         // Pengguna logout, reset user state
         setUser(null);
         console.log("Pengguna logout (dari onAuthStateChanged)");
+        setIsAuthReady(true);
       }
     });
-
-    // Unsubscribe listener saat komponen unmount
     return unsubscribe;
   }, []);
 
@@ -82,6 +82,7 @@ const useAuthProvider = () => {
     try {
       await auth.signOut();
       console.log("Logout berhasil di hook.");
+      navigate("/login");
     } catch (err) {
       setError(`Logout gagal: ${err.message}`);
       console.error("Error saat logout di hook:", err);
