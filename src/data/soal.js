@@ -1,3 +1,25 @@
+//  const handleUpload = async () => {
+//     try {
+//       const questionsCollectionRef = collection(db, "questions");
+//       for (const question of questions) {
+//         await addDoc(questionsCollectionRef, question);
+//         console.log(
+//           `Pertanyaan dengan ID ${question.id} berhasil ditambahkan.`
+//         );
+//       }
+//       alert("Semua pertanyaan berhasil diupload ke Firebase!");
+//     } catch (error) {
+//       console.error("Error menambahkan pertanyaan ke Firebase:", error);
+//       alert("Terjadi kesalahan saat mengupload pertanyaan ke Firebase.");
+//     }
+//   };
+
+{/* <div>
+  <button className="!bg-amber-400 !items-center " onClick={handleUpload}>
+    Upload Pertanyaan ke Firebase
+  </button>
+</div>; */}
+
 const questions = [
   {
     id: 1,
@@ -232,9 +254,6 @@ const questions = [
       },
     ],
   },
-  
-  
-
 ];
 
 export default questions;

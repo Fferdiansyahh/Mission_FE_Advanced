@@ -3,17 +3,17 @@ import VideoBelajarLogo from "../../assets/Logo_Video_ Belajar.png";
 import LogoProfile from "../../assets/u-3.png";
 
 import "./Navbar.css";
-import { AuthContext } from "../../data/authContext";
 import { useLocation } from "react-router-dom";
-
 import useActivePage from "../../data/useActivePage";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdLogout } from "react-icons/md";
 import Stepper from "../home/1.2-All-Product/components/Stepper1";
+import { useAuth } from "../../hooks/useAuth";
 
 export default function Navbar1() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { isLoggedIn, logout } = useContext(AuthContext);
+  const { user, logout, isAuthReady } = useAuth();
+  const isLoggedIn = !!user;
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
   useEffect(() => {
@@ -60,19 +60,30 @@ export default function Navbar1() {
           </a>
         </div>
         <div className="n-2">
-          {!hideLoginRegister && (
+          {!hideLoginRegister && isAuthReady &&  (
             <div className="n-2-1 ">
               <a href="/kategori">
                 <p className="text-kelima">Kategori</p>
               </a>
               {isLoggedIn ? (
-                <>
+                <div className="flex items-center">
+                  {" "}
+                  {/* Tambahkan div sebagai container */}
                   <img
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
                     src={LogoProfile}
-                    alt="#"
+                    alt="Profil"
+                    className="cursor-pointer" // Tambahkan cursor-pointer untuk indikasi interaktif
                   />
-                </>
+                  {/* {user?.displayName && (
+                    <span className="ml-2 text-sm">{user.displayName}</span>
+                  )}                  
+                  {!user?.displayName && user?.email && (
+                    <span className="ml-2 text-sm">
+                      {user.email.split("@")[0]}
+                    </span>
+                  )} */}
+                  </div>
               ) : (
                 <div className="flex gap-4">
                   <a

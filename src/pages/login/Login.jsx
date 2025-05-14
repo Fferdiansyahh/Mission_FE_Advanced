@@ -1,23 +1,25 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Login.css";
 import LogoGoogle from "../../assets/Logo_Google.png";
 import ShowPass from "/src/assets/hide-pass.svg";
 import HidePass from "/src/assets/show-pass.svg";
-import users from "../../data/users";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../data/authContext";
 import Container from "../navbar/Container";
+import { useAuth } from "../../hooks/useAuth";
+// import useAuth from "../../hooks/useAuth";
 
 export default function Login() {
-    const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-
-  const { login } = useContext(AuthContext);
+  const {
+    error,
+    isLoading,
+    login: authLogin,
+    setError: setAuthError,
+  } = useAuth(); // Gunakan custom hook, rename login function
   const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
@@ -30,34 +32,34 @@ export default function Login() {
       ...prev,
       [name]: value,
     }));
+    if (error) {
+      setAuthError("");
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
-    setIsLoading(true);
-
     try {
-      // Simulate API call delay
-      await new Promise((resolve) => setTimeout(resolve, 500));
-
-      const user = users.find(
-        (u) => u.email === formData.email && u.password === formData.password
-      );
-
+      const user = await authLogin(formData.email, formData.password);
       if (user) {
-        login();
+        console.log("Login berhasil di komponen Login:", user);
         navigate("/");
       } else {
-        setError("Email atau password salah");
+        setError("Email atau password salah");        
       }
     } catch (err) {
-      setError("Terjadi kesalahan saat login");
-      console.error("Login error:", err);
-    } finally {
-      setIsLoading(false);
+      setError(err.message); // Tampilkan pesan error dari hook
+      console.error("Error saat login:", err);
     }
   };
+
+  useEffect(() => {
+    return () => {
+      if (error) {
+        setAuthError("");
+      }
+    };
+  }, [error, setAuthError]);
 
   return (
     <Container>

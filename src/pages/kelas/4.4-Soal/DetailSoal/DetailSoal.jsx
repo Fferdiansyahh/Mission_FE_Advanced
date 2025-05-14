@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
-import PopupDone from "../../../navbar/components/PopupDone";
 
 export default function DetailSoal(props) {
   const {

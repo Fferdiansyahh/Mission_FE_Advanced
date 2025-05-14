@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../login/Login.css";
 import LogoGoogle from "../../assets/Logo_Google.png";
@@ -6,8 +6,10 @@ import FlagImg from "../../assets/indo.png";
 import ShowPass from "/src/assets/hide-pass.svg";
 import HidePass from "/src/assets/show-pass.svg";
 import Container from "../navbar/Container";
-import users from "../../data/users";
-
+// import users from "../../data/users";
+import { registerUser } from "../../firebase/registerUser";
+import { useAuth } from "../../hooks/useAuth";
+// import useAuth from "../../hooks/useAuth";
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -19,12 +21,17 @@ export default function Register() {
   });
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
-
+  // const [password, setPassword] = useState("");
+  // const [confirmPassword, setConfirmPassword] = useState("");
+  const { error, isLoading, success, register } = useAuth(); // Gunakan custom hook
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (success) {
+      console.log("Registrasi berhasil, redirect ke /login");
+      navigate("/login");
+    }
+  }, [success, navigate]);
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -38,14 +45,9 @@ export default function Register() {
       [name]: value,
     }));
   };
-
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    setError("");
-    setSuccess("");
-
     const { name, email, phone, password, confirmPassword } = formData;
-
     if (!name || !email || !phone || !password || !confirmPassword) {
       setError("Semua field wajib diisi.");
       return;
@@ -56,21 +58,16 @@ export default function Register() {
       return;
     }
 
-    const isEmailExist = users.some((user) => user.email === email);
-    if (isEmailExist) {
-      setError("Email sudah terdaftar.");
-      return;
+    try {
+      await register(name, email, password, "+62" + phone);
+      // if (success) {
+      //   console.log("Success state:", success);
+      //   navigate("/login");
+      //   //  console.log("Success state:", success);
+      // }
+    } catch (err) {
+      console.error("Error saat registrasi:", err);
     }
-
-    users.push({
-      nama: name,
-      email,
-      password,
-      no: "+62" + phone,
-    });
-
-    setSuccess("Pendaftaran berhasil. Mengarahkan ke halaman login...");
-    setTimeout(() => navigate("/login"), 1500);
   };
 
   return (
@@ -86,7 +83,7 @@ export default function Register() {
 
             <form onSubmit={handleRegister}>
               <div className="form-group">
-                <label htmlfor="name">Nama Lengkap</label>
+                <label htmlFor="name">Nama Lengkap</label>
                 <span style={{ color: "red" }}>*</span>
                 <input
                   type="text"
@@ -108,7 +105,7 @@ export default function Register() {
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="email">No Hp</label>
+                <label htmlFor="phone">No Hp</label>
                 <span style={{ color: "red" }}>*</span>
                 <div className="flag">
                   <img className="flag-img" src={FlagImg} />
@@ -119,7 +116,7 @@ export default function Register() {
                   </select>
                   <input
                     type="text"
-                    id="email"
+                    id="phone"
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}

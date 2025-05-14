@@ -1,14 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-import Book from "/src/assets/book.svg";
-import Bag from "/src/assets/bag.svg";
-import Clock from "/src/assets/clock-1.png";
-import Profile from "/src/assets/profile.svg";
 import ImgPr from "/src/assets/profile.png";
 import HidePass from "/src/assets/hide-pass.svg";
 import ShowPass from "/src/assets/show-pass.svg";
 import "./DetailProfile.css";
-import { Button } from "flowbite-react";
+import { useAuth } from "../../../../hooks/useAuth";
 
 export default function DetailProfile() {
   const detail = [
@@ -38,6 +34,7 @@ export default function DetailProfile() {
     },
   ];
 
+  const { user } = useAuth();
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
   const [password, setPassword] = useState("");
@@ -52,12 +49,12 @@ export default function DetailProfile() {
   };
   return (
     <>
-      <div key={detail.id} className="d-pr-1-1">
+      <div className="d-pr-1-1">
         <div className="d-pr-m-1">
           <img className="d-pr-img" src={ImgPr} alt="#" />
           <div className="d-pr-m">
-            <h2>Ferdiansyah</h2>
-            <p>ansyah.ferdi5@gmail.com</p>
+            <h2>{user ? user.displayName : "Nama Pengguna"}</h2>
+            <p>{user ? user.email : "Email Pengguna"}</p>
             <h5>Ganti Foto Profil</h5>
           </div>
         </div>

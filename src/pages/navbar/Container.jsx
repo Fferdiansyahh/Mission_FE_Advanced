@@ -4,12 +4,14 @@ import NavbarKelas from "./NavbarKelas";
 import Navbar1 from "./Navbar-1";
 import Navbar from "./Navbar";
 import "./Navbar.css";
-import { AuthContext } from "../../data/authContext";
+
 import { useContext } from "react";
 import { useLocation } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 
 export default function Container({ children }) {
-  const { isLoggedIn } = useContext(AuthContext);
+  const { user } = useAuth();
+  const isLoggedIn = !!user;
   const location = useLocation();
   const shouldHideFooter = [
     "/login",

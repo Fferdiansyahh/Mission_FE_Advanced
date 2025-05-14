@@ -1,17 +1,18 @@
 import ListKelas from "../../4.1-Kelas/ListKelas/ListKelas";
-
 import DetailSoal from "../DetailSoal/DetailSoal";
 import ListSoal from "../DetailSoal/ListSoal";
 import "../Soal.css";
 import check from "/src/assets/check.svg";
 import quiz from "/src/assets/quiz.svg";
 import Footer1 from "../../../navbar/Footer-1";
-import questions from "../../../../data/soal";
-import { useContext, useState } from "react";
+// import questions from "../../../../data/soal";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import hitungHasilUjian from "../../../../data/hitungHasil";
 import PopupDone from "../../../navbar/components/PopupDone";
 import { HasilUjianContext } from "../../../../data/HasilUjianContext.jsx";
+import ambilSemuaSoalFirestore from "../../../../firebase/ambilSoal.js";
+import useFetchSoal from "../../../../hooks/useFetchSoal.js";
 
 export default function SoalPretest() {
   const [showPopup, setShowPopup] = useState(false);
@@ -94,6 +95,9 @@ export default function SoalPretest() {
   const navigate = useNavigate();
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOptions, setSelectedOptions] = useState({});
+
+  const { questions, loading, error } = useFetchSoal("questions"); // Gunakan custom hook
+
   const handleOptionSelect = (optionId) => {
     setSelectedOptions((prev) => ({
       ...prev,
@@ -146,6 +150,10 @@ export default function SoalPretest() {
     Object.keys(selectedOptions).length === questions.length;
   const isLastQuestion = currentQuestionIndex === questions.length - 1;
 
+  if (loading) {
+    return <div>Memuat soal...</div>;
+  }
+
   return (
     <>
       <div>
@@ -154,6 +162,7 @@ export default function SoalPretest() {
             activeQuestionId={questions[currentQuestionIndex].id}
             selectedOptions={selectedOptions}
             onSelectQuestion={handleSelectQuestion}
+            questions={questions}
           />
 
           <DetailSoal
@@ -163,7 +172,7 @@ export default function SoalPretest() {
             handleOptionSelect={handleOptionSelect}
             handleNext={handleNext}
             handlePrevious={handlePrevious}
-            handleNextClick={handleNextClick} // Ki
+            handleNextClick={handleNextClick}
           />
           <Footer1
             left="Foundations of User Experience Design"

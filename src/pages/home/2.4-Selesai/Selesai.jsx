@@ -36,6 +36,7 @@ export default function Selesai(props) {
                 Silakan cek email kamu untuk informasi lebih lanjut. Hubungi
                 kami jika ada kendala.
               </p>
+
               {!isVisible && (
                 <button className="button" onClick={handleClickButton}>
                   <p>Lihat Detail Pesanan</p>
