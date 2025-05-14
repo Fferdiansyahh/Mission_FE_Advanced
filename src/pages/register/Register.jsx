@@ -60,6 +60,7 @@ export default function Register() {
 
     try {
       await register(name, email, password, "+62" + phone);
+      navigate("/login"); //
       // if (success) {
       //   console.log("Success state:", success);
       //   navigate("/login");
