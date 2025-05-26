@@ -18,7 +18,7 @@ export default function SoalPretest() {
   const [showPopup, setShowPopup] = useState(false);
   const dataKelas = [
     {
-      id: 1,
+      id: 0,
       img: check,
       tlList: "Video: ",
       kelas: "Introduction to HR",

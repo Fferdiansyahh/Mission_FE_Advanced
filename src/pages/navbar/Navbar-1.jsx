@@ -1,7 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import VideoBelajarLogo from "../../assets/Logo_Video_ Belajar.png";
 import LogoProfile from "../../assets/u-3.png";
-
 import "./Navbar.css";
 import { useLocation } from "react-router-dom";
 import useActivePage from "../../data/useActivePage";

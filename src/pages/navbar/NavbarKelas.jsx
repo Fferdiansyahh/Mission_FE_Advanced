@@ -8,10 +8,12 @@ import NotifModul from "./components/NotifModul";
 import { AuthContext } from "../../data/authContext";
 import { MdEmojiEvents, MdLogout } from "react-icons/md";
 import { HasilUjianContext } from "../../data/HasilUjianContext";
+import { useAuth } from "../../hooks/useAuth";
 
 export default function NavbarKelas() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { isLoggedIn, logout } = useContext(AuthContext);
+  const { user, logout, isAuthReady } = useAuth();
+  const isLoggedIn = !!user;
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -55,7 +57,7 @@ export default function NavbarKelas() {
                 onClick={() => setOpen(!open)}
               >
                 <MdEmojiEvents className="text-pertama w-6 h-6" />
-                <span className="text-base font-bold text-pertama max-sm:hidden block" >
+                <span className="text-base font-bold text-pertama max-sm:hidden block">
                   Ambil Sertifikat
                 </span>
                 <ChevronDownIcon className="dropdown-icon" />

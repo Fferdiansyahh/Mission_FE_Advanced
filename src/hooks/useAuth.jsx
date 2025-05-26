@@ -17,6 +17,7 @@ export const AuthProvider = ({ children }) => {
 };
 export const useAuth = () => useContext(AuthContext);
 
+let ignoreNextLogin = false;
 const useAuthProvider = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -27,17 +28,22 @@ const useAuthProvider = () => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (authUser) => {
+      if (ignoreNextLogin) {
+        console.log("Auto login diabaikan setelah register.");
+        ignoreNextLogin = false; // Reset setelah dilewati
+        return;
+      }
+
       if (authUser) {
         setUser(authUser);
         console.log("Pengguna login (dari onAuthStateChanged):", authUser.uid);
-        setIsAuthReady(true);
       } else {
-        // Pengguna logout, reset user state
         setUser(null);
         console.log("Pengguna logout (dari onAuthStateChanged)");
-        setIsAuthReady(true);
       }
+      setIsAuthReady(true);
     });
+
     return unsubscribe;
   }, []);
 
@@ -46,9 +52,12 @@ const useAuthProvider = () => {
     setError("");
     setSuccess("");
     try {
+      ignoreNextLogin = true;
       const user = await registerUser(name, email, password, phone);
       console.log("Registrasi berhasil di hook:", user);
       setSuccess("Pendaftaran berhasil.");
+      await auth.signOut(); // keluar dari session
+      navigate("/login");
 
       return user;
     } catch (err) {
