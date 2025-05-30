@@ -5,9 +5,7 @@ import AppRoutes from "./routes/AppRoutes";
 export default function App() {
   return (
     <BrowserRouter>
-      <AuthProvider>
-        <AppRoutes />
-      </AuthProvider>
+      <AppRoutes />
     </BrowserRouter>
   );
 }

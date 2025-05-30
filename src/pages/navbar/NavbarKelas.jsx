@@ -5,17 +5,32 @@ import "../login/Login.css";
 import "./NavbarKelas.css";
 import { useState, useEffect, useRef, useContext } from "react";
 import NotifModul from "./components/NotifModul";
-import { AuthContext } from "../../data/authContext";
+// import { AuthContext } from "../../data/authContext";
 import { MdEmojiEvents, MdLogout } from "react-icons/md";
 import { HasilUjianContext } from "../../data/HasilUjianContext";
-import { useAuth } from "../../hooks/useAuth";
+// import { useAuth } from "../../hooks/useAuth";
+
+import { useAppDispatch, useAppSelector } from "../../store/redux/hooks";
+import {
+  selectIsAuthenticated,
+  selectIsAuthReady,
+  selectUser,
+  logoutUserThunk,
+} from "../../store/redux/authSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function NavbarKelas() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { user, logout, isAuthReady } = useAuth();
-  const isLoggedIn = !!user;
+  // const { user, logout, isAuthReady } = useAuth();
+  // const isLoggedIn = !!user;
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
+
+  const dispatch = useAppDispatch();
+  const user = useAppSelector(selectUser);
+  const isLoggedIn = useAppSelector(selectIsAuthenticated);
+  const isAuthReady = useAppSelector(selectIsAuthReady);
+  const navigate = useNavigate(); // Inisialisasi useNavigate
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -32,6 +47,13 @@ export default function NavbarKelas() {
   const { hasilUjian } = useContext(HasilUjianContext);
   const nilaiAkhir =
     !hasilUjian || hasilUjian.nilai < 80 ? 0 : hasilUjian.nilai;
+
+  const handleLogout = () => {
+    dispatch(logoutUserThunk());
+    setIsMenuOpen(false); // Tutup menu setelah logout
+    // Navigasi ke halaman login akan ditangani oleh ProtectedRoute di AppRoutes
+    // karena state `isLoggedIn` di Redux akan berubah menjadi false.
+  };
   return (
     <nav className="navbar-kelas">
       <div className="navbar-left">
@@ -132,7 +154,7 @@ export default function NavbarKelas() {
           </li>
           <li className="!m-0">
             <a
-              onClick={logout}
+              onClick={handleLogout}
               href="/login"
               className="flex gap-1.5 items-center !text-red-500 w-full py-4 px-3 hover:font-semibold border border-y-kedua border-x-0  pr-14 max-sm:pr-0"
             >

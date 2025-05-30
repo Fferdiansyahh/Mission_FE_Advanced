@@ -9,6 +9,18 @@ import Container from "../navbar/Container";
 // import users from "../../data/users";
 import { registerUser } from "../../firebase/registerUser";
 import { useAuth } from "../../hooks/useAuth";
+
+import { useAppDispatch, useAppSelector } from "../../store/redux/hooks";
+import {
+  registerUserThunk,
+  selectAuthError,
+  selectIsLoading,
+  selectIsAuthenticated,
+  clearAuthError,
+  clearAuthSuccessMessage, // Perhatikan ini, namanya telah diperbarui di authSlice
+  selectAuthSuccessMessage, // Tambahkan ini untuk mengakses successMessage dari Redux
+} from "../../store/redux/authSlice";
+
 // import useAuth from "../../hooks/useAuth";
 
 export default function Register() {
@@ -23,15 +35,22 @@ export default function Register() {
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
   // const [password, setPassword] = useState("");
   // const [confirmPassword, setConfirmPassword] = useState("");
-  const { error, isLoading, success, register } = useAuth(); // Gunakan custom hook
+  // const { error, isLoading, success, register } = useAuth(); // Gunakan custom hook
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (success) {
-      console.log("Registrasi berhasil, redirect ke /login");
-      navigate("/login");
-    }
-  }, [success, navigate]);
+  const dispatch = useAppDispatch();
+  const error = useAppSelector(selectAuthError);
+  const isLoading = useAppSelector(selectIsLoading);
+  const isAuthenticated = useAppSelector(selectIsAuthenticated);
+  const successMessage = useAppSelector(selectAuthSuccessMessage); // Ambil dari Redux
+
+  // useEffect(() => {
+  //   if (!isAuthenticated && successMessage) {
+  //     setTimeout(() => {
+  //       navigate("/login", { replace: true });
+  //     }, 1500); // tampilkan pesan sukses 1.5 detik dulu
+  //   }
+  // }, [isAuthenticated, successMessage, navigate]);
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -47,27 +66,28 @@ export default function Register() {
   };
   const handleRegister = async (e) => {
     e.preventDefault();
-    const { name, email, phone, password, confirmPassword } = formData;
-    if (!name || !email || !phone || !password || !confirmPassword) {
-      setError("Semua field wajib diisi.");
-      return;
-    }
 
-    if (password !== confirmPassword) {
-      setError("Kata sandi dan konfirmasi tidak cocok.");
-      return;
-    }
+    // 1. Redirect langsung ke login SEBELUM proses registrasi
+    navigate("/login", {
+      state: { email: formData.email },
+      replace: true,
+    });
 
+    // 2. Jalankan registrasi di background
     try {
-      await register(name, email, password, "+62" + phone);
-      navigate("/login"); //
-      // if (success) {
-      //   console.log("Success state:", success);
-      //   navigate("/login");
-      //   //  console.log("Success state:", success);
-      // }
-    } catch (err) {
-      console.error("Error saat registrasi:", err);
+      await dispatch(
+        registerUserThunk({
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+          phone: formData.phone,
+        })
+      ).unwrap();
+
+      // 3. Force refresh untuk memastikan state bersih
+      window.location.reload();
+    } catch (error) {
+      console.error("Registration error:", error);
     }
   };
 
@@ -80,7 +100,9 @@ export default function Register() {
             <p>Yuk, daftarkan akunmu sekarang juga.</p>
 
             {error && <div className="error-message">{error}</div>}
-            {success && <div className="success-message">{success}</div>}
+            {isAuthenticated && (
+              <div className="success-message">{isAuthenticated}</div>
+            )}
 
             <form onSubmit={handleRegister}>
               <div className="form-group">

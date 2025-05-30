@@ -5,13 +5,18 @@ import Navbar1 from "./Navbar-1";
 import Navbar from "./Navbar";
 import "./Navbar.css";
 
-import { useContext } from "react";
+// import { useContext } from "react";
 import { useLocation } from "react-router-dom";
-import { useAuth } from "../../hooks/useAuth";
+import { selectIsAuthenticated } from "../../store/redux/authSlice";
+import { useAppSelector } from "../../store/redux/hooks";
+// import { useAuth } from "../../hooks/useAuth";
 
 export default function Container({ children }) {
-  const { user } = useAuth();
-  const isLoggedIn = !!user;
+  // const { user } = useAuth();
+
+  // const isLoggedIn = !!user;
+  const isLoggedIn = useAppSelector(selectIsAuthenticated);
+
   const location = useLocation();
   const shouldHideFooter = [
     "/login",

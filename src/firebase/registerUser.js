@@ -3,27 +3,32 @@ import { createUserWithEmailAndPassword, signOut } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 
 export async function registerUser(nama, email, password, no) {
+  // 1. Nonaktifkan sementara listener auth
+  if (auth._authStateListener) auth._authStateListener();
+  
   try {
-    // Buat user di Firebase Auth
-    const userCredential = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
+    // 2. Buat user baru
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
 
-    // Simpan data tambahan ke Firestore
+    // 3. Simpan data tambahan ke Firestore
     await setDoc(doc(db, "users", user.uid), {
       nama,
       email,
       no,
       uid: user.uid,
+      createdAt: new Date().toISOString()
     });
 
-    console.log("Registrasi berhasil");
-    return user;
-  } catch (error) {
-    console.error("Error saat registrasi:", error.message);
-    throw error;
+    // 4. Logout tanpa menunggu (fire and forget)
+    signOut(auth).catch(console.error);
+
+    return { 
+      email,
+      message: "Registrasi berhasil! Silakan login" 
+    };
+  } finally {
+    // 5. Aktifkan kembali listener setelah 1 detik
+    setTimeout(() => initializeAuthListener(), 1000);
   }
 }

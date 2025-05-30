@@ -153,13 +153,14 @@
 
 .input-profil {
   display: flex;
-  /* flex-direction: column; */
+  flex-direction: row;
   gap: 20px;
   width: 100%;
 }
 
 .input-pass {
-  display: none;
+  display: flex;
+  flex-direction: row;
   gap: 20px;
   width: 100%;
 }

@@ -7,14 +7,23 @@ import useActivePage from "../../data/useActivePage";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdLogout } from "react-icons/md";
 import Stepper from "../home/1.2-All-Product/components/Stepper1";
-import { useAuth } from "../../hooks/useAuth";
+import { useAppDispatch, useAppSelector } from "../../store/redux/hooks";
+import {
+  selectIsAuthenticated,
+  selectIsAuthReady,
+  selectUser,
+  logoutUserThunk,
+} from "../../store/redux/authSlice";
+import { selectUserProfile } from "../../store/redux/userProfileSlice";
+// import { useAuth } from "../../hooks/useAuth";
 
 export default function Navbar1() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { user, logout, isAuthReady } = useAuth();
-  const isLoggedIn = !!user;
+  // const { user, logout, isAuthReady } = useAuth();
+  // const isLoggedIn = !!user;
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
+
   useEffect(() => {
     function handleClickOutside(event) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -28,6 +37,13 @@ export default function Navbar1() {
   }, []);
 
   const location = useLocation();
+
+  const dispatch = useAppDispatch(); // Untuk memanggil thunk logout
+  const user = useAppSelector(selectUser); // Objek user Firebase dari Redux
+  const isLoggedIn = useAppSelector(selectIsAuthenticated); // Status login dari Redux
+  const isAuthReady = useAppSelector(selectIsAuthReady); // Status siap otentikasi dari Redux
+  const userProfile = useAppSelector(selectUserProfile); // Profil pengguna dari Redux
+
   const hideLoginRegister =
     location.pathname === "/login" ||
     location.pathname === "/register" ||
@@ -46,6 +62,19 @@ export default function Navbar1() {
     "/detail-pembayaran",
   ].some((path) => location.pathname.includes(path));
 
+  const handleLogout = () => {
+    dispatch(logoutUserThunk()); // Panggil dispatch dengan thunk logout
+    setIsMenuOpen(false); // Tutup menu setelah logout
+  };
+
+  useEffect(() => {
+    console.log("--- Navbar1 Render Update ---");
+    console.log("  isAuthReady:", isAuthReady);
+    console.log("  isLoggedIn:", isLoggedIn);
+    console.log("  User:", user ? user.email : "null"); // Gunakan email untuk identifikasi
+    console.log("----------------------------");
+  }, [isAuthReady, isLoggedIn, user]);
+
   return (
     <nav className="navbar">
       <div className="n">
@@ -59,7 +88,7 @@ export default function Navbar1() {
           </a>
         </div>
         <div className="n-2">
-          {!hideLoginRegister && isAuthReady &&  (
+          {!hideLoginRegister && isAuthReady && (
             <div className="n-2-1 ">
               <a href="/kategori">
                 <p className="text-kelima">Kategori</p>
@@ -82,7 +111,7 @@ export default function Navbar1() {
                       {user.email.split("@")[0]}
                     </span>
                   )} */}
-                  </div>
+                </div>
               ) : (
                 <div className="flex gap-4">
                   <a
@@ -161,7 +190,7 @@ export default function Navbar1() {
             </li>
             <li className="!m-0">
               <a
-                onClick={logout}
+                onClick={handleLogout}
                 href="/login"
                 className="flex gap-1.5 items-center !text-red-500 w-full py-4 px-3 hover:font-semibold border border-y-kedua border-x-0  pr-14 max-sm:pr-0"
               >
